@@ -1,0 +1,21 @@
+﻿@using Microsoft.Ajax.Utilities
+@model UniversityAdmissionApplicationProcessingSystem.Models.Admin
+@{
+    ViewBag.Title = "AdminHome";
+    var exam = ViewBag.Exam;
+}
+<div class="container" style="background: wheat;">
+    <h3 align="center">@exam.University </h3>
+    <h4 align="center">@exam.ExamName </h4>
+
+    <div class="container" style="background: snow;">
+        
+        @Html.Partial("AdminNavBar")
+        <br />
+    </div>
+<br/>
+    </div>
+
+
+
+

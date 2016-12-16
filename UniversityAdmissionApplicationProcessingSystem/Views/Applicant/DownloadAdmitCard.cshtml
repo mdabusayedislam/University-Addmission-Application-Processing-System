@@ -1,0 +1,73 @@
+﻿@model UniversityAdmissionApplicationProcessingSystem.Models.Applicant
+@{
+    ViewBag.Title = "DownloadAdmitCard";
+    var exam = ViewBag.Exam;
+    var admit = ViewBag.Admit;
+    Layout = null;
+
+
+}
+
+<div class="container" style="background: wheat">
+    <h3 align="center">@exam.University </h3>
+    <h4 align="center">@exam.ExamName </h4>
+
+    <div class="container" style="background: snow">
+        <center><h4>প্রবেশ পত্র </h4></center>
+        <center>
+            <table>
+                <tr>
+                    <td>
+                        <table class="table table-bordered">
+
+                            <tr><td>নাম</td><td>@admit.Name</td></tr>
+                            <tr><td>পিতা</td><td>@admit.FatherName</td> </tr>
+                            <tr><td>মাতা</td><td>@admit.MotherName</td> </tr>
+                            <tr><td>ছাত্র/ছাত্রী</td><td>@admit.Sex</td></tr>
+                            <tr><td>রোল</td><td>@admit.RollNo</td> </tr>
+                            <tr><td>ইউনিট<td>@admit.Unit</td> </tr>
+
+                        </table>
+                    </td>
+                    <td>
+                        <table class="table table-bordered">
+                            <tr><td><center><img src="@Url.Content(admit.PhotoLocation)" alt="@admit.PhotoLocation" height="150px" width="150px" /></center></td></tr>
+                            <tr><td><center><img src="@Url.Content(admit.SignatureLocation)" alt="@admit.PhotoLocation" height="50px" width="150px" /></center></td></tr>
+                            
+                        </table>
+                    </td>
+                </tr>
+                <tr><th colspan="2">নির্দেশনা </th></tr>
+                <tr><td colspan="2">১। পরীক্ষার্থীকে পরীক্ষার সময়  এই প্রবেশপত্রটি বহন করতে হবে  </td></tr>
+               <tr><td colspan="2">২। পরীক্ষার্থীকে অবশ্যই উত্তরপত্র এবং  হাজিরাশিটে প্রবেশপত্রের স্বাক্ষরটি দিতে হবে  </td></tr>
+          </table>
+        </center>
+      
+              
+             <br/>      
+              
+                   
+    </div>
+    <br />
+  
+               
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+
+
+
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+        <link href="~/Content/Site.css" rel="stylesheet" />

@@ -1,0 +1,79 @@
+﻿@model IEnumerable<UniversityAdmissionApplicationProcessingSystem.Models.Admin>
+
+@{
+    ViewBag.Title = "Index";
+    var applicant = ViewBag.Applicant;
+    var exam = ViewBag.Exam;
+}
+<div class="container" style="background: wheat;">
+    <h3 align="center">@exam.University </h3>
+    <h4 align="center">@exam.ExamName </h4>
+    
+    
+   
+    @*<div class="container" style="background: snow;">
+        <div class="col-lg-3"></div>*@
+
+      
+
+        <div class="col-lg-12" style="background: snow;">
+            @Html.Partial("AdminNavBar")
+            <br />
+            <br/>
+            <br/>
+
+            
+            
+            <fieldset><legend>AdminList</legend>
+     
+                    @Html.ActionLink("Add New Admin", "Create")
+              
+                <table class="table table-bordered">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Password)
+                        </th>
+                        <th>Action</th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Password)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+
+                            </td>
+                        </tr>
+                    }
+
+                </table></fieldset>
+           
+
+            <br/>
+
+        </div>
+
+       
+
+
+
+        @*<div class="col-lg-3"></div>
+    </div>*@
+    <br />
+</div>
+
+
+
+
+
+
+

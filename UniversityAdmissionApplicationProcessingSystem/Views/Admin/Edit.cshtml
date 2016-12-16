@@ -1,0 +1,85 @@
+﻿@model UniversityAdmissionApplicationProcessingSystem.Models.Admin
+
+@{
+    ViewBag.Title = "Edit Admin";
+    var exam=ViewBag.Exam;
+}
+
+<div class="container" style="background: wheat;">
+    <h3 align="center">@exam.University </h3>
+    <h4 align="center">@exam.ExamName </h4>
+
+    <div class="container" style="background: snow;">
+        <div class="col-lg-3"></div>
+
+        @using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+            <div class="col-lg-6" style="background: #ECF4F6;">
+                <br />
+
+                <table class="table table-bordered">
+                    @Html.HiddenFor(model => model.Id)
+                    <tbody>
+                        <tr><th colspan="3"><center>Admin Edit</center></th></tr>
+                        <tr>
+                            
+                            <td>@Html.LabelFor(model => model.UserName)</td> 
+                            <td>@Html.EditorFor(model => model.UserName)</td>
+                            <td>@Html.ValidationMessageFor(model => model.UserName)</td>
+                            
+                        </tr>
+
+                       
+                        <tr><td>@Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })</td>
+                            <td>@Html.EditorFor(model => model.Password)</td>
+                            <td>@Html.ValidationMessageFor(model => model.Password)</td>
+                        </tr>
+
+                    </tbody>
+
+
+
+                    <tr>
+                        <th colspan="3">
+                            <center><button type="submit" class="btn btn-primary btn-lg">সংরক্ষণ করুন </button></center>
+                        </th>
+                    </tr>
+
+
+
+                </table>
+
+
+            </div>
+
+        }
+
+
+
+        <div class="col-lg-3"></div>
+    </div>
+    <br />
+</div>
+
+
+
+
+ 
+    
+
+       
+
+
+           
+  
+              
+               
+       
+      
+               
+       
+
+
+
+   

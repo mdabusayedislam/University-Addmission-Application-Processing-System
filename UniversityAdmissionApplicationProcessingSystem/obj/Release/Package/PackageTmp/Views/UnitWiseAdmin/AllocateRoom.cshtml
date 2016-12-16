@@ -1,0 +1,68 @@
+﻿@model UniversityAdmissionApplicationProcessingSystem.Models.Applicant
+@{
+    ViewBag.Title = "Room Allocation";
+    var exam = ViewBag.Exam;
+}
+<div class="container" style="background: wheat;">
+    <h3 align="center">@exam.University </h3>
+    <h4 align="center">@exam.ExamName </h4>
+
+    @using (Html.BeginForm("AllocateRoom", "UnitWiseAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <div class="col-lg-12" style="background: snow;">
+            @Html.Partial("AdminNavBar")
+            <br />
+            <fieldset>
+                <legend>Room Allocation</legend>
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td>ইউনিট</td>
+                            <td>@Html.DropDownListFor(model => model.Unit, new SelectList(ViewBag.Unit, "Value", "Text"))</td>
+                            <td>রুম নং </td>
+                            <td>@Html.DropDownListFor(model => model.AllocateRoom, new SelectList(ViewBag.RoomList, "AllocateRoom", "AllocateRoom"), "--Select Room--") </td>
+                            <td>রোল</td>
+                            <td>@Html.TextBoxFor(model => model.RollNo)</td>
+                            <td>আসন সংখ্যা</td>
+                            <td>@Html.TextBoxFor(model => model.CapacityofRoom)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>@Html.ValidationMessageFor(model => model.Unit)</td>
+                            <td></td>
+                            <td>@Html.ValidationMessageFor(model => model.AllocateRoom)</td>
+                            <td></td>
+                            <td>@Html.ValidationMessageFor(model => model.RollNo)</td>
+                            <td></td>
+                            <td>@Html.ValidationMessageFor(model => model.CapacityofRoom)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <center>
+                    <button type="submit" class="btn btn-primary btn-lg">সংরক্ষণ করুন </button>
+                </center>
+
+                <center>
+                    <p>
+
+                        @if (ViewBag.PostBack)
+                        {
+                            @ViewBag.AllocateRoom
+                        }
+
+
+                    </p>
+                </center>
+            </fieldset>     
+            <br/>
+        </div> 
+
+    }
+
+  <br/>
+         </div>
+  
+   
+

@@ -1,0 +1,74 @@
+﻿@model UniversityAdmissionApplicationProcessingSystem.Models.Applicant
+@{
+    ViewBag.Title = "RecoveryAdmitCardView";
+    var exam = ViewBag.Exam;
+    var admit = ViewBag.Admit;
+
+}
+<div class="container" style="background: wheat;">
+<h3 align="center">@exam.University </h3>
+<h4 align="center">@exam.ExamName </h4>
+
+ @if (admit.Name != null)
+ {
+
+     <div class="container" style="background: snow">
+         <center><h4>প্রবেশ পত্র </h4></center>
+         <div class="col-lg-3" style="height: 300px">
+         </div>
+         <div class="col-lg-4" style="height: 300px">
+             <table class="table table-bordered">
+                       
+                 <tr><td>নাম</td><td>@admit.Name</td></tr>
+                 <tr><td>পিতা</td><td>@admit.FatherName</td> </tr>
+                 <tr><td>মাতা</td><td>@admit.MotherName</td> </tr>
+                 <tr><td>ছাত্র/ছাত্রী</td><td>@admit.Sex</td></tr>
+                 <tr><td>রোল</td><td>@admit.RollNo</td> </tr>
+                 <tr><td>ইউনিট</td><td>@admit.Unit</td> </tr>
+                       
+             </table>
+         </div>
+         <div class="col-lg-2" style="height: 300px">
+             <table class=" table table-bordered">
+                 <tr><td><img src="@Url.Content(admit.PhotoLocation)" alt="@admit.PhotoLocation" height="150px" width="150px" /></td></tr>
+                 <tr><td><img src="@Url.Content(admit.SignatureLocation)" alt="@admit.PhotoLocation" height="40px" width="150px" /></td></tr>
+
+             </table>
+
+         </div>
+         <div class="col-lg-3" style="height: 300px">
+         </div>
+     </div>
+
+
+
+
+     using (Html.BeginForm("GetAdmitCard", "Applicant", FormMethod.Post, new {enctype = "multipart/form-data"}))
+     {
+
+
+         @Html.HiddenFor(model => model.SSC_Roll)
+         @Html.HiddenFor(model => model.SSC_Reg)
+         @Html.HiddenFor(model => model.SSC_Board)
+         @Html.HiddenFor(model => model.SSC_PassYear)
+         @Html.HiddenFor(model => model.HSC_Roll)
+         @Html.HiddenFor(model => model.HSC_Reg)
+         @Html.HiddenFor(model => model.HSC_Board)
+         @Html.HiddenFor(model => model.HSC_PassYear)
+         @Html.HiddenFor(model => model.Unit)
+
+
+         <center><button type="submit" class="btn btn-primary btn-lg">ডাউনলোড</button></center>
+
+
+     }
+ }
+
+ else
+ {
+     <h4><center>No Data Found</center></h4>
+ }
+     
+     
+     
+</div>

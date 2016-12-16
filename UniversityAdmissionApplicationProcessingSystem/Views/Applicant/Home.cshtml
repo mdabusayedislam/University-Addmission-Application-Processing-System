@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+}
+
+<div class="container" style="background: wheat;">
+    <br />
+    <br />
+    <div class="container" style="background: snow;">
+
+       
+        <fieldset>
+            
+            <legend><h1>Application Process</h1></legend>
+
+            <h4>    Online Application  <span class="glyphicon glyphicon-arrow-right"></span>
+                Get Bill Number <span class="glyphicon glyphicon-arrow-right"></span>
+                Payment <span class="glyphicon glyphicon-arrow-right"></span>
+                Upload Photo & Signature    <span class="glyphicon glyphicon-arrow-right"></span>
+                Download Admit Card</h4>
+                
+            <br/>
+           
+            
+      
+           
+            <h4>আবেদন করার জন্য @Html.ActionLink("Application", "LogIn", "Applicant") লিংকে ক্লিক করুন </h4>
+            <h4>আবেদন ফি প্রদানের পদ্ধতি দেখার জন্য @Html.ActionLink("Payment", "Payment", "Applicant") লিংকে ক্লিক করুন</h4>
+            <h4>ট্রানজেকশন আইডি জন্য @Html.ActionLink("RecoveryTransctionId", "RecoveryTransctionId", "Applicant") লিংকে ক্লিক করুন</h4>
+            <h4>প্রবেশপত্র সংগ্রহ জন্য @Html.ActionLink("Admit Card", "RecoveryAdmit", "Applicant") লিংকে ক্লিক করুন</h4>
+            <h4>আসন বিন্যাস   দেখার জন্য @Html.ActionLink("SeatPlan", "GetAllocateRoomByRollNo", "UnitWiseAdmin") লিংকে ক্লিক করুন</h4>
+            <h4>সকল নোটিশ  দেখার জন্য @Html.ActionLink("Notice", "Notice", "Applicant") লিংকে ক্লিক করুন</h4>
+            <h4>যে কোন প্রয়োজনে  @Html.ActionLink("HelpLine", "HelpLine", "Applicant") লিংকে ক্লিক করুন</h4>
+           
+            
+            <br/>
+            <br
+
+            
+
+        </fieldset>
+    </div>
+    <br />
+</div>

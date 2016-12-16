@@ -1,0 +1,101 @@
+﻿@model UniversityAdmissionApplicationProcessingSystem.Models.Applicant
+@{
+    ViewBag.Title = "Room Allocation By Roll";
+    var app = ViewBag.AllocateRoomInfo;
+    var exam = ViewBag.Exam;
+
+}
+
+<div class="container" style="background: wheat;">
+    <h3 align="center">@exam.University </h3>
+    <h4 align="center">@exam.ExamName </h4>
+
+    @using (Html.BeginForm("GetAllocateRoomByRollNo", "UnitWiseAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+
+        <div class="col-lg-12" style="background: snow;">
+       
+            <br />
+            <table align="center">
+
+                <tr>
+                    <td>
+                        <center>
+                            ইউনিট : @Html.DropDownListFor(model => model.Unit, new SelectList(ViewBag.Unit, "Value", "Text"))
+                          
+                        </center>
+                    </td>
+                    <td>রোল : @Html.TextBoxFor(model=>model.RollNo) </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.Unit)
+                    </td>
+                    <td>@Html.ValidationMessageFor(model=>model.RollNo)</td>
+                </tr>
+                <tr><td colspan="2"><center><button type="submit" class="btn btn-primary btn-lg"> খোঁজ   করুন </button></center></td></tr>
+
+            </table>
+            <br />
+            <fieldset>
+                <legend>Seat Plan</legend>
+
+
+                <table class="table table-bordered">
+
+                    @if (ViewBag.PostBack)
+                    {
+
+
+
+
+                        <tr><td>Name</td><td>FatherName</td><td>MotherName</td><td>Sex</td><td>Unit</td><td>RollNo</td><td>Photo</td><td>Signature</td><td>AllocateRoom</td></tr>
+
+                        foreach (var items in app)
+                        {
+
+                            <tr>
+                                <td>@items.Name</td>
+                                <td>@items.FatherName</td>
+                                <td>@items.MotherName</td>
+                                <td>@items.Sex</td>
+                                <td>@items.Unit</td>
+                                <td>@items.RollNo</td>
+                                <td><img src="@Url.Content(items.PhotoLocation)" height="50px" width="50px" /></td>
+                                <td><img src="@Url.Content(items.SignatureLocation)" height="20px" width="50px" /></td>
+                                <td>@items.AllocateRoom</td>
+
+                            </tr>
+
+                        }
+                    }
+
+                </table>
+
+
+            </fieldset>
+
+
+            <br />
+
+
+
+
+        </div>
+
+        <br />
+
+    }
+
+
+
+</div>
+
+
+
+
+
+
+
+

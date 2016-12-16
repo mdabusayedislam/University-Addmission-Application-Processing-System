@@ -1,0 +1,244 @@
+﻿@model UniversityAdmissionApplicationProcessingSystem.Models.Applicant
+@{
+    ViewBag.Title = "ApplicantDetailInfo";
+    var applicant = ViewBag.Applicant;
+    var exam = ViewBag.Exam;
+}
+
+<div class="container" style="background: wheat;">
+    <h3 align="center">@exam.University </h3>
+    <h4 align="center">@exam.ExamName </h4>
+
+    @if (applicant.Name != null)
+    {
+        <div class="container" style="background: snow;">
+         
+            <div class="col-lg-6" style="background: #ECF4F6;">
+                <br />
+                <table class=" table table-bordered">
+                    <tr><th colspan="2"><h4><center>আবেদনকারীর ব্যক্তিগত তথ্য</center></h4></th></tr>
+                    <tr><td>নাম</td><td>@applicant.Name</td></tr>
+                    <tr><td>পিতার নাম</td><td>@applicant.FatherName</td></tr>
+                    <tr><td>মাতার নাম</td><td>@applicant.MotherName</td></tr>
+                    <tr><td>ছাত্র/ছাত্রী </td><td>@applicant.Sex</td></tr>
+                </table>
+               
+            </div>
+            <div class="col-lg-6" style="background: #ECF4F6;">
+                <br />
+                <table class="table table-bordered">
+                    <th colspan="5"><h4><center>আবেদনকারীর একাডেমিক তথ্য</center></h4> </th>
+                    <tr><td></td>             <td>রোল</td>               <td>পাসের বছর</td>             <td>বোর্ড</td>      <td>জি.পি.এ.</td></tr>
+                    <tr><td>মাধ্যমিক/সমমান</td><td>@applicant.SSC_Roll</td><td>@applicant.SSC_PassYear</td><td>@applicant.SSC_Board</td><td>@applicant.SSC_GPA</td></tr>
+                    <tr><td>উচ্চমাধ্যমিক/সমমান</td><td>@applicant.HSC_Roll</td><td>@applicant.HSC_PassYear</td><td>@applicant.HSC_Board</td><td>@applicant.HSC_GPA</td></tr>
+                    <tr><td colspan="2"></td><td colspan="2">মোট জি.পি.এ</td><td>@applicant.Total_GPA</td></tr>
+                </table>
+              
+            </div>
+           
+        </div>
+        <br/>
+
+    <div class="container" style="background: snow;">
+        <br/>
+        <div class="col-lg-12" style="background: #ECF4F6;">
+           <br/>
+            <table class="table table-bordered">
+                
+                <tr><th colspan="4"><center><h4>এ ইউনিট-A Unit</h4></center>  </th></tr>
+                <tr>
+                    @{
+                        if (ViewBag.AUnit != "A Unit - Already Applied")
+                        {
+                            if (ViewBag.AUnit != "Not ELIGIBLE For A Unit")
+                            {
+                                using (Html.BeginForm("SaveApplicantInfo", "Applicant", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                
+                                    <tr>
+                                        @Html.HiddenFor(model => model.Name)
+                                        @Html.HiddenFor(model => model.FatherName)
+                                        @Html.HiddenFor(model => model.MotherName)
+                                        @Html.HiddenFor(model => model.Sex)
+                                        @Html.HiddenFor(model => model.SSC_Roll)
+                                        @Html.HiddenFor(model => model.SSC_Reg)
+                                        @Html.HiddenFor(model => model.SSC_Board)
+                                        @Html.HiddenFor(model => model.SSC_PassYear)
+                                        @Html.HiddenFor(model => model.HSC_Roll)
+                                        @Html.HiddenFor(model => model.HSC_Reg)
+                                        @Html.HiddenFor(model => model.HSC_Board)
+                                        @Html.HiddenFor(model => model.HSC_PassYear)
+                                        @Html.HiddenFor(model => model.Total_GPA)
+
+                                        <input id="AUnit" type="hidden" name="Unit" value="A" />
+
+                                    </tr>
+                                    <tr><td>বিলার আইডি </td><td>বিল নম্বর</td><td>টাকা</td><td> ট্রানজেকশন আইডি </td></tr>
+                                    <tr>
+                                        <td> @Html.TextBoxFor(model => model.BillerId, new { @Value = 3333, @readonly = "readonly" })</td>
+                                        <td> @Html.TextBoxFor(model => model.BillNumber, new { @Value = "1" + @Model.HSC_Roll + @Model.HSC_BoardId + @Model.HSC_PassYearId, @readonly = "readonly" })</td>
+                                        <td> @Html.TextBoxFor(model => model.Amount, new { @Value = 300, @readonly = "readonly" })</td>
+                                        <td><input id="TransctionId" name="TransctionId" type="text" pattern="[0-9]{8}" required /> </td>
+                                    </tr>
+                                     <tr><td>আবেদনযোগ্য বিষয় সমূহ</td><td>ছবি</td><td> স্বাক্ষর </td><td>মোবাইল </td></tr>
+                                    <tr>
+                                        <td>
+
+                                            @ViewBag.CSE
+                                            @ViewBag.Environment  
+                                            @ViewBag.Math
+                                            <br/>
+                                            @ViewBag.Physics
+                                            @ViewBag.Statistics
+                                            <br />
+                                            @ViewBag.Geology
+                                            @ViewBag.Chemistry
+                                        </td>
+                                        <td><img id="user_imgA1" height="80" width="80" style="border: solid"><input id="Photo" type="file" name="Photo" accept=".jpg,.jpeg,.png,.gif" onchange=" showA1(this) " required="Upload Photo" /></td>
+                                        <td><img id="user_imgA2" height="50" width="80" style="border: solid"><input id="Signature" type="file" name="Signature" accept=".jpg,.jpeg,.png,.gif" onchange=" showA2(this) " required="Upload Signature" /></td>
+                                        <td><input id="Mobile" name="Mobile" type="text" pattern="[0-9]{11}" required /> </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="4">
+                                            <center><button type="submit" class="btn btn-primary btn-lg">এ ইউনিটে আবেদন নিশ্চিতকরণ </button></center>
+                                        </th>
+                                    </tr>
+
+                                }
+
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="4"><center><h1>@*@ViewBag.AUnit*@
+                                                                এ ইউনিট-A Unit আবেদনের যোগ্যতা নেই
+
+                                        </h1></center></td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="4"><center><h1>@*@ViewBag.AUnit*@
+                                                            এ ইউনিট-A Unit আগে আবেদন করেছেন </h1></center></td>
+                            </tr>
+
+                        }
+                    }
+                </tr>
+               
+            </table>
+            <br />
+            </div>
+        <br />
+        
+
+        <div class="col-lg-12" style="background: #ECF4F6;">
+            <br />
+            <table class="table table-bordered">
+                <tr><th colspan="4"><center><h4>বি ইউনিট-B Unit</h4></center></th></tr>
+                <tr>
+                    @{
+        if (ViewBag.BUnit != "B Unit - Already Applied")
+        {
+            if (ViewBag.BUnit != "Not ELIGIBLE For B Unit")
+            {
+                using (Html.BeginForm("SaveApplicantInfo", "Applicant", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+
+
+
+
+
+                    <tr>
+                        @Html.HiddenFor(model => model.Name)
+                        @Html.HiddenFor(model => model.FatherName)
+                        @Html.HiddenFor(model => model.MotherName)
+                        @Html.HiddenFor(model => model.Sex)
+                        @Html.HiddenFor(model => model.SSC_Roll)
+                        @Html.HiddenFor(model => model.SSC_Reg)
+                        @Html.HiddenFor(model => model.SSC_Board)
+                        @Html.HiddenFor(model => model.SSC_PassYear)
+                        @Html.HiddenFor(model => model.HSC_Roll)
+                        @Html.HiddenFor(model => model.HSC_Reg)
+                        @Html.HiddenFor(model => model.HSC_Board)
+                        @Html.HiddenFor(model => model.HSC_PassYear)
+                        @Html.HiddenFor(model => model.Total_GPA)
+
+                        <input id="BUnit" type="hidden" name="Unit" value="B" />
+
+                    </tr>
+                         <tr><td>বিলার আইডি </td><td>বিল নম্বর</td><td>টাকা</td><td> ট্রানজেকশন আইডি </td></tr>
+                        <tr>
+                            <td>@Html.TextBoxFor(model => model.BillerId, new { @Value = 3333, @readonly = "readonly" })</td>
+                            <td>@Html.TextBoxFor(model => model.BillNumber, new { @Value = "2" + @Model.HSC_Roll + @Model.HSC_BoardId + @Model.HSC_PassYearId, @readonly = "readonly" })</td>
+                            <td>@Html.TextBoxFor(model => model.Amount, new { @Value = 300, @readonly = "readonly" })</td>
+                            <td><input id="TransctionId" name="TransctionId" type="text" pattern="[0-9]{8}" required title="GGGGG" /></td>
+                        </tr>
+                 <tr><td>আবেদনযোগ্য বিষয় সমূহ</td><td>ছবি</td><td> স্বাক্ষর </td><td>মোবাইল </td></tr>
+                        <tr>
+                            <td>
+                               
+                                @ViewBag.Economics
+                                <br/>
+                                @ViewBag.GeologyAndEnvironment
+                                <br/>
+
+                                @ViewBag.GovernmentAndPolitics
+
+                               
+                            </td>
+                            <td><img id="user_imgB1" height="80" width="80" style="border: solid"><input id="Photo" type="file" name="Photo" accept=".jpg,.jpeg,.png,.gif" onchange=" showB1(this) " required="Upload Photo" /></td>
+                            <td><img id="user_imgB2" height="50" width="80" style="border: solid"><input id="Signature" type="file" name="Signature" accept=".jpg,.jpeg,.png,.gif" onchange=" showB2(this) " required="Upload Signature" /></td>
+                            <td><input id="Mobile" name="Mobile" type="text" pattern="[0-9]{11}" required /> </td>
+                        </tr>
+
+                        <tr>
+                            <th colspan="4">
+                                <center><button type="submit" class="btn btn-primary btn-lg">বি ইউনিটে আবেদন নিশ্চিতকরণ </button></center>
+                            </th>
+                        </tr>
+
+                }
+
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4"><center><h1>@*@ViewBag.BUnit*@
+                                                এ ইউনিট-B Unit আবেদনের যোগ্যতা নেই</h1></center></td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4"><center><h1>@*@ViewBag.BUnit*@
+                                            বি ইউনিট-B Unit আগে আবেদন করেছেন</h1></center></td>
+            </tr>
+
+        }
+                    }
+                   
+                </table>
+            <br/>
+        
+        </div>
+
+                <br />
+            </div>
+
+    }
+    else
+    {
+        <table class="table table-bordered"><tr><th><h4><b><center>আবেদনকারীর তথ্য ডাটাবেজে নাই</center></b> </h4></th></tr></table>
+    }
+
+       
+    <br/>
+        
+        </div>
+
+            <script src="~/Scripts/photo_sign.js"></script>

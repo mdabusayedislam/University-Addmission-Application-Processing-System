@@ -1,0 +1,112 @@
+﻿@using Microsoft.Ajax.Utilities
+@model UniversityAdmissionApplicationProcessingSystem.Models.Applicant
+@{
+    ViewBag.Title = "LogIn";
+    var applicant = ViewBag.Applicant;
+    var exam = ViewBag.Exam;
+}
+<div class="container" style="background: wheat;">
+<h3 align="center">@exam.University </h3>
+<h4 align="center">@exam.ExamName </h4>
+
+    <div class="container" style="background: snow;">
+        <div class="col-lg-3"></div>
+
+        @using (Html.BeginForm("ApplicantDetailInfo", "Applicant", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+            <div class="col-lg-6" style="background: snow;">
+                <br />
+
+                <table class="table table-bordered">
+
+                    <thead>
+                        <tr><th colspan="3"><center><h5>লগইন   ফরম</h5></center> </th></tr>
+                        <tr>
+                            <th></th>
+                            <th><center>এস এস সি </center> </th>
+                            <th><center>এইচ এস সি</center></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>@Html.LabelFor(m => m.SSC_Roll)</td>
+                            <td>
+                                @Html.TextBoxFor(model => model.SSC_Roll)
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(model => model.HSC_Roll)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>@Html.ValidationMessageFor(m => m.SSC_Roll)</td>
+                            <td>@Html.ValidationMessageFor(m => m.HSC_Roll)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.LabelFor(m => m.SSC_Reg)</td>
+                            <td>
+                                @Html.TextBoxFor(model => model.SSC_Reg)
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(model => model.HSC_Reg)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>@Html.ValidationMessageFor(m => m.SSC_Reg)</td>
+                            <td>@Html.ValidationMessageFor(m => m.HSC_Reg)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.LabelFor(m => m.SSC_Board)</td>
+                            <td>
+                                @Html.DropDownListFor(model => model.SSC_Board, new SelectList(ViewBag.Board, "Value", "Text"))
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(model => model.HSC_Board, new SelectList(ViewBag.Board, "Value", "Text"))
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>@Html.ValidationMessageFor(m => m.SSC_Board)</td>
+                            <td>@Html.ValidationMessageFor(m => m.HSC_Board)</td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.LabelFor(m => m.SSC_PassYear)</td>
+                            <td>
+                                @Html.DropDownListFor(model => model.SSC_PassYear, new SelectList(ViewBag.SSCPassYear, "Value", "Text"))
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(model => model.HSC_PassYear, new SelectList(ViewBag.HSCPassYear, "Value", "Text"))
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>@Html.ValidationMessageFor(m => m.SSC_PassYear)</td>
+                            <td>@Html.ValidationMessageFor(m => m.HSC_PassYear)</td>
+                        </tr>
+                    </tbody>
+
+
+
+                    <tr>
+                        <th colspan="3">
+                            <center><button type="submit" class="btn btn-primary btn-lg">লগইন</button></center>
+                        </th>
+                    </tr>
+
+                </table>
+
+
+            </div>
+
+        }
+
+
+        <div class="col-lg-3"></div>
+    </div>
+    <br/>
+    </div>

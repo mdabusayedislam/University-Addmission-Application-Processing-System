@@ -1,0 +1,93 @@
+﻿
+@model UniversityAdmissionApplicationProcessingSystem.Models.Applicant
+@{
+    ViewBag.Title = "RecoveryTransctionId";
+    var app = ViewBag.Transction;
+    var exam = ViewBag.Exam;
+
+}
+
+<div class="container" style="background: wheat;">
+    <h3 align="center">@exam.University </h3>
+    <h4 align="center">@exam.ExamName </h4>
+
+    @using (Html.BeginForm("RecoveryTransctionId", "Applicant", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+
+        <div class="col-lg-12" style="background: snow;">
+
+            <br />
+            <table align="center">
+
+                <tr>
+                   
+                    <td>বিল নম্বর : @Html.TextBoxFor(model => model.BillNumber) </td>
+                </tr>
+                <tr>
+                   
+                    <td>@Html.ValidationMessageFor(model => model.BillNumber)</td>
+                </tr>
+                <tr><td colspan="2"><center><button type="submit" class="btn btn-primary btn-lg"> খোঁজ   করুন </button></center></td></tr>
+
+            </table>
+            <br />
+            <fieldset>
+                <legend>পেমেন্ট তথ্য </legend>
+
+
+                <table class="table table-bordered">
+
+                    @if (ViewBag.PostBack)
+                    {
+                        if (app == null)
+                        {
+                            <tr><td>বিল প্রদান করেন নি</td></tr>
+                        }
+                        else
+                        {
+                             <tr><th>বিল নম্বর </th><th> ট্রানজেকশন আইডি</th></tr>
+                        foreach (var items in app)
+                        {
+
+                            <tr>
+                                <td>@items.BillNumber</td>
+                                <td>@items.TransctionId</td>
+                                
+
+                            </tr>
+
+                        }
+                        }
+   
+                       
+                    }
+
+                </table>
+
+
+            </fieldset>
+
+
+            <br />
+
+
+
+
+        </div>
+
+        <br />
+
+    }
+
+
+
+</div>
+
+
+
+
+
+
+
+
